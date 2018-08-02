@@ -65,7 +65,7 @@
     <transmission name="${prefix}_wheel_trans">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="${prefix}_wheel">
-        <hardwareInterface>VelocityJointInterface</hardwareInterface>
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       </joint>
       <actuator name="${prefix}_actuator">
         <mechanicalReduction>1</mechanicalReduction>
@@ -196,7 +196,5 @@
   <xacro:include filename="$(find jackal_description)/urdf/accessories.urdf.xacro" />
 
   <!-- Optional custom includes. -->
-  <xacro:if value="$(optenv JACKAL_URDF_EXTRAS 0)">
-    <xacro:include filename="$(env JACKAL_URDF_EXTRAS)" />
-  </xacro:if>
+  <xacro:include filename="$(optenv JACKAL_URDF_EXTRAS empty.urdf)" />
 </robot>
