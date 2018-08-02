@@ -1,0 +1,12 @@
+Source: ros-kinetic-jackal-navigation
+Section: misc
+Priority: extra
+Maintainer: Mike Purvis <mpurvis@clearpathrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), ros-kinetic-catkin, ros-kinetic-roslaunch
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-kinetic-jackal-navigation
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-kinetic-amcl, ros-kinetic-gmapping, ros-kinetic-map-server, ros-kinetic-move-base, ros-kinetic-urdf, ros-kinetic-xacro
+Description: Launch files and code for autonomous navigation of the Jackal
