@@ -17,22 +17,37 @@
   <xacro:include filename="$(find jackal_description)/urdf/accessories/bridge_plate.urdf.xacro" />
 
   <!-- If enabled, generate the LASER payload (by default, a SICK LMS111). -->
-  <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />
   <xacro:if value="$(optenv JACKAL_LASER 0)">
-    <sick_lms1xx_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
-                       topic="$(optenv JACKAL_LASER_TOPIC front/scan)"/>
+    <xacro:if value="$(optenv JACKAL_LASER_HOKUYO 0)">
+      <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
+      <hokuyo_ust10_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
+                          topic="$(optenv JACKAL_LASER_TOPIC front/scan)" />
 
-    <joint name="$(optenv JACKAL_LASER_MOUNT front)_laser_mount_joint" type="fixed">
-      <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)"
-              rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
-      <parent link="$(optenv JACKAL_LASER_MOUNT front)_mount" />
-      <child link="$(optenv JACKAL_LASER_MOUNT front)_laser_mount" />
-    </joint>
+      <joint name="$(optenv JACKAL_LASER_MOUNT front)_laser_mount_joint" type="fixed">
+        <origin xyz="$(optenv JACKAL_LASER_OFFSET 0.11 0 0)"
+                rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
+        <parent link="$(optenv JACKAL_LASER_MOUNT front)_mount" />
+        <child link="$(optenv JACKAL_LASER_MOUNT front)_laser_mount" />
+      </joint>
+    </xacro:if>
+
+    <xacro:unless value="$(optenv JACKAL_LASER_HOKUYO 0)">
+      <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />
+      <sick_lms1xx_mount prefix="$(optenv JACKAL_LASER_MOUNT front)"
+                         topic="$(optenv JACKAL_LASER_TOPIC front/scan)"/>
+
+      <joint name="$(optenv JACKAL_LASER_MOUNT front)_laser_mount_joint" type="fixed">
+        <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)"
+                rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
+        <parent link="$(optenv JACKAL_LASER_MOUNT front)_mount" />
+        <child link="$(optenv JACKAL_LASER_MOUNT front)_laser_mount" />
+      </joint>
+    </xacro:unless>
   </xacro:if>
 
   <!-- If enabled, generate the upgraded Navsat payload (a Novatel Smart6). -->
-  <xacro:include filename="$(find jackal_description)/urdf/accessories/novatel_smart6.urdf.xacro" />
   <xacro:if value="$(optenv JACKAL_NAVSAT 0)">
+    <xacro:include filename="$(find jackal_description)/urdf/accessories/novatel_smart6.urdf.xacro" />
     <bridge_plate mount="$(optenv JACKAL_NAVSAT_MOUNT rear)"
                   height="$(optenv JACKAL_NAVSAT_HEIGHT 0.1)" />
     <novatel_smart6 prefix="$(optenv JACKAL_NAVSAT_MOUNT rear)"/>
@@ -125,8 +140,8 @@
     </joint>
   </xacro:if> -->
 
-  <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
   <xacro:if value="$(optenv JACKAL_FRONT_ACCESSORY_FENDER 0)">
+    <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
     <xacro:if value="$(optenv JACKAL_FRONT_FENDER_UST10 0)">
         <hokuyo_ust10 prefix="front_ust10" parent_link="front_fender_accessory_link"/>
     </xacro:if>
