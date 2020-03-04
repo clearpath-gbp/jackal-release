@@ -1,0 +1,12 @@
+Source: ros-kinetic-jackal-description
+Section: misc
+Priority: optional
+Maintainer: Mike Purvis <mpurvis@clearpathrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), ros-kinetic-catkin, ros-kinetic-roslaunch
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-kinetic-jackal-description
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-kinetic-lms1xx, ros-kinetic-robot-state-publisher, ros-kinetic-urdf, ros-kinetic-xacro
+Description: URDF robot description for Jackal
