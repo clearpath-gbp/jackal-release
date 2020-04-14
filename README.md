@@ -1,3 +1,31 @@
+## jackal (melodic) - 0.6.4-3
+
+The packages in the `jackal` repository were released into the `melodic` distro by running `/home/civerachb/.local/bin/bloom-release --rosdistro melodic --track melodic jackal` on `Tue, 14 Apr 2020 15:28:42 -0000`
+
+These packages were released:
+- `jackal_control`
+- `jackal_description`
+- `jackal_msgs`
+- `jackal_navigation`
+- `jackal_tutorials`
+
+Version of package(s) in repository `jackal`:
+
+- upstream repository: https://github.com/jackal/jackal.git
+- release repository: https://github.com/clearpath-gbp/jackal-release.git
+- rosdistro version: `0.6.4-1`
+- old version: `0.6.4-2`
+- new version: `0.6.4-3`
+
+Versions of tools used:
+
+- bloom version: `0.9.3`
+- catkin_pkg version: `0.4.16`
+- rosdep version: `0.18.0`
+- rosdistro version: `0.8.0`
+- vcstools version: `0.1.42`
+
+
 ## jackal (melodic) - 0.6.4-2
 
 The packages in the `jackal` repository were released into the `melodic` distro by running `/home/civerachb/.local/bin/bloom-release --rosdistro melodic --track melodic jackal` on `Tue, 14 Apr 2020 15:16:33 -0000`
