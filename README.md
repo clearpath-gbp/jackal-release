@@ -1,3 +1,31 @@
+## jackal (kinetic) - 0.6.6-1
+
+The packages in the `jackal` repository were released into the `kinetic` distro by running `/usr/bin/bloom-release -r kinetic -t kinetic jackal` on `Mon, 24 Aug 2020 17:39:39 -0000`
+
+These packages were released:
+- `jackal_control`
+- `jackal_description`
+- `jackal_msgs`
+- `jackal_navigation`
+- `jackal_tutorials`
+
+Version of package(s) in repository `jackal`:
+
+- upstream repository: https://github.com/jackal/jackal.git
+- release repository: https://github.com/clearpath-gbp/jackal-release.git
+- rosdistro version: `0.6.5-2`
+- old version: `0.6.5-2`
+- new version: `0.6.6-1`
+
+Versions of tools used:
+
+- bloom version: `0.9.8`
+- catkin_pkg version: `0.4.22`
+- rosdep version: `0.19.0`
+- rosdistro version: `0.8.2`
+- vcstools version: `0.1.42`
+
+
 ## jackal (melodic) - 0.7.1-1
 
 The packages in the `jackal` repository were released into the `melodic` distro by running `/usr/bin/bloom-release -r melodic -t melodic jackal` on `Mon, 24 Aug 2020 17:20:12 -0000`
