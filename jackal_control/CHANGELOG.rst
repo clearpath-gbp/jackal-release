@@ -2,7 +2,13 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-0.6.6 (2020-08-24)
+0.7.2 (2020-09-29)
+------------------
+* Load the control extras last (`#75 <https://github.com/jackal/jackal/issues/75>`_)
+* Remove the PS4 device from the yaml file, always apply the parameter from the joy_dev argument instead (`#73 <https://github.com/jackal/jackal/issues/73>`_)
+* Contributors: Chris I-B
+
+0.7.1 (2020-08-24)
 ------------------
 * Disable ekf option (`#71 <https://github.com/jackal/jackal/issues/71>`_)
   * added env var and if-statement to disable robot ekf
@@ -10,8 +16,10 @@ Changelog for package jackal_control
   * clearer wording
 * Contributors: jmastrangelo-cpr
 
-0.6.5 (2020-04-20)
+0.7.0 (2020-04-20)
 ------------------
+* Mark the PS3 controller launch file as deprecated, update the default joystick device to point to /dev/input/ps4, as per the new udev rules added to the bringup package
+* Contributors: Chris I-B
 
 0.6.4 (2020-03-04)
 ------------------
