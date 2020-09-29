@@ -2,6 +2,11 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.6.7 (2020-09-29)
+------------------
+* Apply similar change as https://github.com/jackal/jackal/pull/73 for Kinetic
+* Contributors: Chris Iverach-Brereton
+
 0.6.6 (2020-08-24)
 ------------------
 * Disable ekf option (`#71 <https://github.com/jackal/jackal/issues/71>`_)
