@@ -2,6 +2,9 @@
 Changelog for package jackal_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.6.7 (2020-09-29)
+------------------
+
 0.6.6 (2020-08-24)
 ------------------
 * Remove the leading / from the gmapping default scan topic
