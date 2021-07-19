@@ -88,11 +88,18 @@
 
   <!-- If enabled, generate the upgraded Navsat payload (a Novatel Smart6). -->
   <xacro:if value="$(optenv JACKAL_NAVSAT 0)">
-    <xacro:include filename="$(find jackal_description)/urdf/accessories/novatel_smart6.urdf.xacro" />
+    <xacro:property name="navsat_model" value="$(optenv JACKAL_NAVSAT_MODEL smart6)" />
+    <xacro:if value="${navsat_model == 'smart6'}">
+      <xacro:include filename="$(find jackal_description)/urdf/accessories/novatel_smart6.urdf.xacro" />
+      <xacro:novatel_smart6 prefix="$(optenv JACKAL_NAVSAT_MOUNT rear)"/>
+    </xacro:if>
+    <xacro:if value="${navsat_model == 'smart7'}">
+      <xacro:include filename="$(find jackal_description)/urdf/accessories/novatel_smart7.urdf.xacro" />
+      <xacro:novatel_smart7 prefix="$(optenv JACKAL_NAVSAT_MOUNT rear)"/>
+    </xacro:if>
+
     <xacro:bridge_plate mount="$(optenv JACKAL_NAVSAT_MOUNT rear)"
                   height="$(optenv JACKAL_NAVSAT_HEIGHT 0.1)" />
-    <xacro:novatel_smart6 prefix="$(optenv JACKAL_NAVSAT_MOUNT rear)"/>
-
     <joint name="$(optenv JACKAL_NAVSAT_MOUNT rear)_navsat_joint" type="fixed">
       <origin xyz="0 0 0" rpy="0 0 0" />
       <parent link="$(optenv JACKAL_NAVSAT_MOUNT rear)_bridge" />
@@ -187,6 +194,8 @@
       <xacro:hokuyo_ust10_mount
         prefix="front"
         parent_link="front_fender_accessory_link"
+        min_angle="${-pi/2}"
+        max_angle="${pi/2}"
         topic="$(optenv JACKAL_FRONT_LASER_TOPIC front/scan)">
         <origin xyz="0 0 0" rpy="0 0 0" />
       </xacro:hokuyo_ust10_mount>
@@ -198,6 +207,8 @@
       <xacro:hokuyo_ust10_mount
         prefix="rear"
         parent_link="rear_fender_accessory_link"
+        min_angle="${-pi/2}"
+        max_angle="${pi/2}"
         topic="$(optenv JACKAL_REAR_LASER_TOPIC rear/scan)">
         <origin xyz="0 0 0" rpy="0 0 0" />
       </xacro:hokuyo_ust10_mount>
