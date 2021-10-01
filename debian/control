@@ -1,0 +1,12 @@
+Source: ros-melodic-jackal-control
+Section: misc
+Priority: optional
+Maintainer: Mike Purvis <mpurvis@clearpathrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), ros-melodic-catkin, ros-melodic-roslaunch
+Homepage: http://wiki.ros.org/jackal_control
+Standards-Version: 3.9.2
+
+Package: ros-melodic-jackal-control
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-melodic-controller-manager, ros-melodic-diff-drive-controller, ros-melodic-interactive-marker-twist-server, ros-melodic-joint-state-controller, ros-melodic-joy, ros-melodic-robot-localization, ros-melodic-teleop-twist-joy, ros-melodic-topic-tools, ros-melodic-twist-mux
+Description: Controllers for Jackal
