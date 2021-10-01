@@ -2,12 +2,7 @@
 Changelog for package jackal_navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-0.7.7 (2021-10-01)
-------------------
-* Enable roslaunch_add_file_check when CATKIN_ENABLE_TESTING=true
-* Contributors: PN:Ruichao Wu2
-
-0.7.6 (2021-07-18)
+0.8.0 (2021-04-23)
 ------------------
 
 0.7.5 (2021-03-24)
