@@ -2,23 +2,16 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-0.7.8 (2022-01-18)
+0.8.1 (2022-01-18)
 ------------------
 * predict odom->base_link tf to current time
 * Contributors: Ebrahim Shahrivar
 
-0.7.7 (2021-10-01)
+0.8.0 (2021-04-23)
 ------------------
-* Enable roslaunch_add_file_check when CATKIN_ENABLE_TESTING=true
-* Contributors: PN:Ruichao Wu2
-
-0.7.6 (2021-07-18)
-------------------
-* Add envar support for adding a GX5 family IMU (`#85 <https://github.com/jackal/jackal/issues/85>`_)
-  * Add an alternate EKF file that uses the secondary IMU.  Add the GX5 link to the URDF if necessary. Standard mounting location TBD, so don't merge this yet.
-  * Add a sane default we can use for mounting the GX5.  RSCI-10 is low-priority, so we may not finalize the default position. But this way Integration can at least start using the envars and ensure they set the xyz/rpy offsets correctly.
-  * Don't disable the default IMU configuration, just load the GX5 settings as a secondary IMU
-* Contributors: Chris I-B
+* Merge branch 'noetic-devel-bkup' into noetic-devel
+* Fix the link_name parameter for the interactive marker server; the default for the package includes a leading '/', which prevents the markers from working on Noetic.  We can revert this if/when the default for interactive_marker_twist_server is modified.
+* Contributors: Chris Iverach-Brereton
 
 0.7.5 (2021-03-24)
 ------------------
