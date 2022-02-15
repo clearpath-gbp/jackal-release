@@ -11,6 +11,21 @@
     <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
       <rosparam command="load" file="$(find jackal_control)/config/robot_localization.yaml" />
     </node>
+
+    <group if="$(optenv JACKAL_IMU_MICROSTRAIN 0)">
+      <!-- Optionally load the configuration for the Microstrain-family IMU -->
+      <rosparam>
+        ekf_localization:
+          imu1: microstrain/imu/data
+          imu1_config: [false, false, false,
+                      true, true, true,
+                      false, false, false,
+                      true, true, true,
+                      false, false, false]
+          imu1_differential: false
+      </rosparam>
+      <param name="ekf_localization/imu1" value="$(optenv JACKAL_IMU_MICROSTRAIN_NAME microstrain)/imu/data"/>
+    </group>
   </group>
 
   <node pkg="twist_mux" type="twist_mux" name="twist_mux">
