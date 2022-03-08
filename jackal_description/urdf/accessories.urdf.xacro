@@ -17,11 +17,36 @@
   <xacro:include filename="$(find jackal_description)/urdf/accessories/bridge_plate.urdf.xacro" />
 
   <!-- 2D Lidars -->
-  <xacro:include filename="$(find lms1xx)/urdf/sick_lms1xx.urdf.xacro" />
-  <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_mount.urdf.xacro" />
+  <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_inverted_mount.urdf.xacro" />
+  <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_upright_mount.urdf.xacro" />
   <xacro:include filename="$(find jackal_description)/urdf/accessories/hokuyo_ust10.urdf.xacro" />
   <xacro:include filename="$(find jackal_description)/urdf/accessories/vlp16_mount.urdf.xacro" />
   <xacro:include filename="$(find jackal_description)/urdf/accessories/hdl32_mount.urdf.xacro" />
+
+  <!--
+    Add Microstrain IMU. By default the Jackal comes equipped with an IMU linked to "imu_link". These extra
+    optional microstrain IMU's will be added to another frame, by default, "microstrain_link".
+  -->
+  <xacro:property name="microstrain_enable" value="$(optenv JACKAL_GX5_IMU 0)"/>
+  <xacro:property name="microstrain_enable" value="$(optenv JACKAL_IMU_MICROSTRAIN ${microstrain_enable})" lazy_eval="false"/>
+  <xacro:if value="${microstrain_enable}">
+    <xacro:property name="frame"  value="$(optenv JACKAL_IMU_MICROSTRAIN_LINK microstrain_link)"/>
+  
+    <xacro:property name="parent" value="$(optenv JACKAL_GX5_IMU_PARENT base_link)"/>
+    <xacro:property name="parent" value="$(optenv JACKAL_IMU_MICROSTRAIN_PARENT ${parent})" lazy_eval="false"/>
+
+    <xacro:property name="xyz"    value="$(optenv JACKAL_GX5_IMU_OFFSET -0.139 0.096 0.100)"/>
+    <xacro:property name="xyz"    value="$(optenv JACKAL_IMU_MICROSTRAIN_OFFSET ${xyz})" lazy_eval="false"/>
+
+    <xacro:property name="rpy"    value="$(optenv JACKAL_GX5_IMU_RPY ${PI} 0 -${PI/2})"/>
+    <xacro:property name="rpy"    value="$(optenv JACKAL_IMU_MICROSTRAIN_RPY ${rpy})" lazy_eval="false"/>
+    <link name="${frame}" />
+    <joint name="${frame}_joint" type="fixed">
+      <parent link="${parent}" />
+      <child link="${frame}" />
+      <origin xyz="${xyz}" rpy="${rpy}" />
+    </joint>
+  </xacro:if>
 
   <!--
     Add primary/secondary 2D lidar sensors.  By default these are SICK LMS1xx but can be changed with the
@@ -37,13 +62,21 @@
     <xacro:property name="prefix" value="$(optenv JACKAL_LASER_PREFIX ${mount})" />
     <xacro:property name="parent" value="$(optenv JACKAL_LASER_PARENT ${mount}_mount)" />
     <xacro:property name="lidar_model" value="$(optenv JACKAL_LASER_MODEL lms1xx)" />
+    <xacro:property name="mount_type" value="$(optenv JACKAL_LASER_MOUNT_TYPE upright)" />
     <!-- SICK LMS1xx -->
     <xacro:if value="${lidar_model == 'lms1xx'}">
       <!-- Mount Enabled -->
       <xacro:if value="${tower}">
-        <xacro:sick_lms1xx_mount topic="${topic}" prefix="${prefix}" parent_link="${parent}">
-          <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
-        </xacro:sick_lms1xx_mount>
+        <xacro:if value="${mount_type == 'upright'}">
+          <xacro:sick_lms1xx_upright_mount topic="${topic}" prefix="${prefix}" parent_link="${parent}">
+            <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
+          </xacro:sick_lms1xx_upright_mount>
+        </xacro:if>
+        <xacro:if value="${mount_type == 'inverted'}">
+          <xacro:sick_lms1xx_inverted_mount topic="${topic}" prefix="${prefix}" parent_link="${parent}">
+            <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
+          </xacro:sick_lms1xx_inverted_mount>
+        </xacro:if>
       </xacro:if>
       <!-- Mount Disabled -->
       <xacro:unless value="${tower}">
@@ -181,13 +214,13 @@
       <xacro:novatel_smart7 prefix="${prefix}"/>
       <!-- Tower Enabled -->
       <xacro:if value="${tower}">
-        <xacro:novatel_smart7_stand prefix="${prefix}" parent="${parent}" height="$(optenv JACKAL_NAVSAT_HEIGHT 0.145)">
-          <origin xyz="$(optenv JACKAL_NAVSAT_OFFSET 0 0 0)" rpy="$(optenv JACKAL_NAVSAT_RPY 0 0 0)" />
-        </xacro:novatel_smart7_stand>
+        <xacro:bridge_plate prefix="${prefix}" parent="${parent}" height="$(optenv JACKAL_NAVSAT_HEIGHT 0.1)">
+          <origin xyz="$(optenv JACKAL_NAVSAT_OFFSET 0 0 0)" rpy="$(optenv JACKAL_NAVSAT_RPY 0 0 0)"/>
+        </xacro:bridge_plate>
 
         <joint name="${prefix}_navsat_joint" type="fixed">
-          <origin xyz="0 0 $(optenv JACKAL_NAVSAT_HEIGHT 0.145)" rpy="0 0 0"/>
-          <parent link="${prefix}_navsat_stand" />
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <parent link="${prefix}_bridge" />
           <child link="${prefix}_navsat" />
         </joint>
       </xacro:if>
@@ -376,6 +409,29 @@
         <origin xyz="0 0 0" rpy="0 0 0" />
       </xacro:hokuyo_ust10_mount>
     </xacro:if>
+  </xacro:if>
+
+  <!-- Bumper Accessories -->
+  <xacro:if value="$(optenv JACKAL_WIBOTIC_BUMPER 0)">
+    <link name="wibotic_bumper">
+      <visual>
+        <geometry>
+          <mesh filename="package://jackal_description/meshes/wibotic_bumper.stl" />
+        </geometry>
+        <material name="dark_grey" />
+      </visual>
+      <collision>
+        <geometry>
+          <box size="0.115 0.25 0.145"/>
+        </geometry>
+        <origin xyz="-0.017575 0 0.0575" rpy="0 0 0"/>
+      </collision>
+    </link>
+    <joint name="wibotic_bumper_joint" type="fixed">
+      <origin xyz="0.285 0 0.07455" rpy="0 0 0"/>
+      <parent link="base_link"/>
+      <child link="wibotic_bumper"/>
+    </joint>
   </xacro:if>
 
   <xacro:if value="$(optenv JACKAL_ARK_ENCLOSURE 0)">
