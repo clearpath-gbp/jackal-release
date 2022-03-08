@@ -1,23 +1,24 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-0.8.2 (2022-02-15)
+0.7.9 (2022-03-08)
 ------------------
-* Moved microstrain link to accessories.urdf and updated envvars
-* Added velodyne tower mesh
-* Added Microstrain GX5 to description
-* Removed unnecessary URDF
-* Added Wibotic mesh and STL
-* Contributors: Luis Camero
 
-0.8.1 (2022-01-18)
-------------------
-* Updated to match melodic-devel
-* Contributors: Luis Camero
 
-0.8.0 (2021-04-23)
+0.7.8 (2022-01-18)
 ------------------
+
+0.7.7 (2021-10-01)
+------------------
+* Fix the custom_example URDF file to the LMS1xx sensors don't throw errors
+* Enable roslaunch_add_file_check when CATKIN_ENABLE_TESTING=true
+* Added velodyne towers and HDL-32E sensor (#88)
+* Contributors: Chris I-B, Luis Camero, PN:Ruichao Wu2
+
+0.7.6 (2021-07-18)
+------------------
+* cpr urdf extras
+* Contributors: Ebrahim Shahrivar
 
 0.7.5 (2021-03-24)
 ------------------

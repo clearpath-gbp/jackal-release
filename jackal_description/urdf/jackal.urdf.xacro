@@ -196,7 +196,10 @@
     <child link="rear_fender_link" />
   </joint>
 
-  <!-- Default Internal IMU Link -->
+  <!-- TODO: Make this internal_imu_link or something, and use a mixed-in xacro
+       to supply the joint between it and imu_link. This is important so that imu_link
+       always points to the "active" IMU. When an upgrade IMU is connected, the
+       internal_imu_link should remain, but imu_link should point to the upgrade one. -->
   <link name="imu_link">
     <inertial>
       <mass value="0.001"/>
@@ -209,7 +212,7 @@
     <child link="imu_link" />
   </joint>
 
-  <!-- Default NAVSAT Link -->
+  <!-- TODO: Same note as applies to imu_link -->
   <link name="navsat_link">
     <visual>
       <geometry>
