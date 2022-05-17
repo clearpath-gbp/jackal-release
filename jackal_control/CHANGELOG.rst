@@ -2,6 +2,9 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.8.5 (2022-05-17)
+------------------
+
 0.8.4 (2022-05-09)
 ------------------
 * Disable absolute yaw in default imu configuration
