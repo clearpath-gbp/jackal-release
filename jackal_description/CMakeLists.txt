@@ -1,22 +1,21 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.5)
 project(jackal_description)
 
-find_package(catkin REQUIRED COMPONENTS roslaunch)
-
-catkin_package()
-
-roslaunch_add_file_check(launch/description.launch)
-
-install(DIRECTORY meshes launch urdf
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-)
-
-if(WIN32)
-install(PROGRAMS scripts/env_run.bat
-  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
-else()
-install(PROGRAMS scripts/env_run
-  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 14)
 endif()
+
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
+
+find_package(ament_cmake REQUIRED)
+find_package(urdf REQUIRED)
+
+install(DIRECTORY launch meshes urdf
+  DESTINATION share/${PROJECT_NAME}
+)
+
+ament_export_dependencies(xacro)
+ament_export_dependencies(urdf)
+ament_package()

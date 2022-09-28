@@ -2,38 +2,18 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-0.8.5 (2022-05-17)
+1.0.0 (2022-09-27)
 ------------------
-* Added Blackfly  entry to URDF
-* Added Blackfly description to package.xml
-* Contributors: Luis Camero
-
-0.8.4 (2022-05-09)
-------------------
-
-0.8.3 (2022-03-08)
-------------------
-* Added the option to remove tower from VLP16 mount
-* Added SICK TIM551 to URDF and package.xml
-* Added UTM30 (`#106 <https://github.com/jackal/jackal/issues/106>`_)
-* Updated Navsat and LMS1xx mounts (`#103 <https://github.com/jackal/jackal/issues/103>`_)
-  * Updated hokuyo_ust10_mount to include min and max angle
-  * Removed extra spaces
-  * Updated SICK LMS1XX mount and NAVSAT mount
-  * Maintained backward compatibility with LMS1xx standard upright poisition by adding mount types
-* Updated hokuyo_ust10_mount to include min and max angle (`#102 <https://github.com/jackal/jackal/issues/102>`_)
-  * Updated hokuyo_ust10_mount to include min and max angle
-  * Removed extra spaces
-* Contributors: Luis Camero, luis-camero
-
-0.8.2 (2022-02-15)
-------------------
-* Moved microstrain link to accessories.urdf and updated envvars
-* Added velodyne tower mesh
-* Added Microstrain GX5 to description
-* Removed unnecessary URDF
-* Added Wibotic mesh and STL
-* Contributors: Luis Camero
+* Updated all packages to 0.8.5.
+* Added sim support
+* Added Nav2 and slam_toolbox to jackal_navigation
+* Control fixes
+* Minor cleanup
+* Added ros2_control to description
+* Remove RViz Dependency
+* Hack until lms1xx and pointgrey_camera_description are available
+* ROS 2 Port
+* Contributors: David V. Lu, Roni Kreinin, Tony Baltovski
 
 0.8.1 (2022-01-18)
 ------------------
