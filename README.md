@@ -1,3 +1,31 @@
+## jackal (noetic) - 0.8.6-1
+
+The packages in the `jackal` repository were released into the `noetic` distro by running `/usr/bin/bloom-release -r noetic -t noetic jackal` on `Thu, 17 Nov 2022 02:34:07 -0000`
+
+These packages were released:
+- `jackal_control`
+- `jackal_description`
+- `jackal_msgs`
+- `jackal_navigation`
+- `jackal_tutorials`
+
+Version of package(s) in repository `jackal`:
+
+- upstream repository: https://github.com/jackal/jackal.git
+- release repository: https://github.com/clearpath-gbp/jackal-release.git
+- rosdistro version: `0.8.4-1`
+- old version: `0.8.5-1`
+- new version: `0.8.6-1`
+
+Versions of tools used:
+
+- bloom version: `0.11.2`
+- catkin_pkg version: `0.5.2`
+- rosdep version: `0.22.1`
+- rosdistro version: `0.9.0`
+- vcstools version: `0.1.42`
+
+
 ## jackal (foxy) - 1.0.1-1
 
 The packages in the `jackal` repository were released into the `foxy` distro by running `/usr/bin/bloom-release -r foxy -t foxy jackal` on `Fri, 14 Oct 2022 18:44:12 -0000`
