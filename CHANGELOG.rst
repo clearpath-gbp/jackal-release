@@ -2,6 +2,11 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.0.2 (2023-02-02)
+------------------
+* Add missing dependency to velodyne_description.
+* Contributors: Joey Yang
+
 1.0.1 (2022-10-14)
 ------------------
 
