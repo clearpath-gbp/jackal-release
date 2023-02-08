@@ -2,6 +2,9 @@
 Changelog for package jackal_msgs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.0.3 (2023-02-08)
+------------------
+
 1.0.2 (2023-02-02)
 ------------------
 * Added SetDomainId service
