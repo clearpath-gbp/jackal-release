@@ -3,14 +3,13 @@ name: jackal_ci
 on: [push, pull_request]
 
 jobs:
-
-  jackal_foxy_ci:
-    name: Foxy
+  jackal_noetic_ci:
+    name: Noetic
     strategy:
       matrix:
         env:
-          - {ROS_DISTRO: foxy, ROS_REPO: main}
-          - {ROS_DISTRO: foxy, ROS_REPO: testing}
+          - {ROS_DISTRO: noetic, ROS_REPO: main}
+          - {ROS_DISTRO: noetic, ROS_REPO: testing}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1

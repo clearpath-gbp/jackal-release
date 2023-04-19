@@ -2,34 +2,29 @@
 Changelog for package jackal_control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.0.3 (2023-02-08)
+0.8.7 (2023-04-19)
 ------------------
 
-1.0.2 (2023-02-02)
+0.8.6 (2022-11-16)
 ------------------
-* Uncomment dependency on imu_filter_madgwick; it is now installable as a deb in Foxy.
-* Contributors: Joey Yang
 
-1.0.1 (2022-10-14)
+0.8.5 (2022-05-17)
 ------------------
-* [jackal_control] Fixed wrong dependency.
-* Contributors: Tony Baltovski
 
-1.0.0 (2022-09-27)
+0.8.4 (2022-05-09)
 ------------------
-* Updated all packages to 0.8.5.
-* Added sim support
-* Use Substitions for launch files
-  Added back CHANGELOG.rst
-* Fixed imu filter node name
-  Updated scan topic to use /front/scan by default
-* Control fixes
-* Use IMU filter
-* Minor cleanup
-* 50Hz controller
-* ROS2 jackal_control
-* ROS 2 Port
-* Contributors: David V. Lu, Roni Kreinin, Tony Baltovski
+* Disable absolute yaw in default imu configuration
+* Set subst_value=true when loading the control_extras file to allow envar-defined configuration inside the file
+* Contributors: Chris I-B, Chris Iverach-Brereton
+
+0.8.3 (2022-03-08)
+------------------
+
+0.8.2 (2022-02-15)
+------------------
+* Updated control.launch to new microstrain envvars and moved definition of ekf-localization paramaters into it
+* Added Microstrain GX5 to jackal_control
+* Contributors: Luis Camero
 
 0.8.1 (2022-01-18)
 ------------------
