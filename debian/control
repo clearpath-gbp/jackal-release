@@ -1,0 +1,12 @@
+Source: ros-noetic-jackal-control
+Section: misc
+Priority: optional
+Maintainer: Mike Purvis <mpurvis@clearpathrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin, ros-noetic-roslaunch
+Homepage: http://wiki.ros.org/jackal_control
+Standards-Version: 3.9.2
+
+Package: ros-noetic-jackal-control
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-foxy-controller-manager, ros-foxy-diff-drive-controller, ros-foxy-interactive-marker-twist-server, ros-foxy-joint-state-controller, ros-foxy-joy, ros-foxy-robot-localization, ros-foxy-teleop-twist-joy, ros-foxy-twist-mux, ros-noetic-topic-tools
+Description: Controllers for Jackal
