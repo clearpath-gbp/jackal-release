@@ -1,0 +1,12 @@
+Source: ros-humble-jackal-navigation
+Section: misc
+Priority: optional
+Maintainer: rkreinin <rkreinin@clearpathrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), ros-foxy-ament-cmake, ros-foxy-ament-lint-auto <!nocheck>, ros-foxy-ament-lint-common <!nocheck>, ros-foxy-nav2-bringup, ros-foxy-slam-toolbox, ros-humble-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-humble-jackal-navigation
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-foxy-nav2-bringup, ros-foxy-slam-toolbox, ros-humble-ros-workspace
+Description: Launch files and code for autonomous navigation of the Jackal
