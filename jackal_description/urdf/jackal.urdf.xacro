@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
 <robot name="jackal" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:arg name="is_sim" default="false" />
+  <xacro:arg name="prefix" default="" />
+  <xacro:arg name="gazebo_controllers" default="$(find jackal_control)/config/control.yaml" />
   <xacro:property name="PI" value="3.1415926535897931" />
 
   <xacro:property name="wheelbase" value="0.262" />
@@ -59,7 +62,7 @@
       <fdir1 value="1 0 0"/>
     </gazebo>
 
-    <joint name="${prefix}_wheel" type="continuous">
+    <joint name="${prefix}_wheel_joint" type="continuous">
       <parent link="chassis_link"/>
       <child link="${prefix}_wheel_link" />
       <xacro:insert_block name="joint_pose" />
@@ -196,7 +199,10 @@
     <child link="rear_fender_link" />
   </joint>
 
-  <!-- Default Internal IMU Link -->
+  <!-- TODO: Make this internal_imu_link or something, and use a mixed-in xacro
+       to supply the joint between it and imu_link. This is important so that imu_link
+       always points to the "active" IMU. When an upgrade IMU is connected, the
+       internal_imu_link should remain, but imu_link should point to the upgrade one. -->
   <link name="imu_link">
     <inertial>
       <mass value="0.001"/>
@@ -209,7 +215,7 @@
     <child link="imu_link" />
   </joint>
 
-  <!-- Default NAVSAT Link -->
+  <!-- TODO: Same note as applies to imu_link -->
   <link name="navsat_link">
     <visual>
       <geometry>
@@ -246,8 +252,43 @@
     <origin xyz="${mount_spacing} 0 0" />
   </joint>
 
+  <!-- ROS2 controls -->
+  <ros2_control name="jackal_hardware" type="system">
+    <hardware>
+      <xacro:if value="$(arg is_sim)">
+        <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+      </xacro:if>
+      <xacro:unless value="$(arg is_sim)">
+        <plugin>jackal_hardware/JackalHardware</plugin>
+        <plugin>fake_components/GenericSystem</plugin>
+      </xacro:unless>
+    </hardware>
+    <joint name="front_left_wheel_joint">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="rear_left_wheel_joint">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="front_right_wheel_joint">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+    <joint name="rear_right_wheel_joint">
+      <command_interface name="velocity"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+  </ros2_control>
+
   <!-- Bring in simulation data for Gazebo. -->
-  <xacro:include filename="$(find jackal_description)/urdf/jackal.gazebo" />
+  <xacro:if value="$(arg is_sim)">
+    <xacro:include filename="$(find jackal_description)/urdf/jackal.gazebo" />
+  </xacro:if>
 
   <!-- Optional standard accessories, including their simulation data. The rendering
        of these into the final description is controlled by optenv variables, which
@@ -256,7 +297,4 @@
 
   <!-- Optional custom includes. -->
   <xacro:include filename="$(optenv JACKAL_URDF_EXTRAS empty.urdf)" />
-
-  <!-- Optional for Clearpath internal softwares -->
-  <xacro:include filename="$(optenv CPR_URDF_EXTRAS empty.urdf)" />
 </robot>
