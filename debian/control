@@ -1,0 +1,12 @@
+Source: ros-noetic-jackal-description
+Section: misc
+Priority: optional
+Maintainer: Mike Purvis <mpurvis@clearpathrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), ros-noetic-catkin, ros-noetic-roslaunch
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-noetic-jackal-description
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-foxy-robot-state-publisher, ros-foxy-urdf, ros-foxy-velodyne-description, ros-foxy-xacro, ros-noetic-flir-camera-description, ros-noetic-lms1xx, ros-noetic-pointgrey-camera-description, ros-noetic-sick-tim
+Description: URDF robot description for Jackal
