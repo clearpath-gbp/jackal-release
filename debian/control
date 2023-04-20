@@ -1,0 +1,12 @@
+Source: ros-humble-jackal-control
+Section: misc
+Priority: optional
+Maintainer: Tony Baltovski <tbaltovski@clearpathrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), ros-humble-ament-cmake, ros-humble-controller-manager, ros-humble-diff-drive-controller, ros-humble-imu-filter-madgwick, ros-humble-interactive-marker-twist-server, ros-humble-jackal-description, ros-humble-joint-state-broadcaster, ros-humble-joint-trajectory-controller, ros-humble-joy, ros-humble-robot-localization, ros-humble-robot-state-publisher, ros-humble-teleop-twist-joy, ros-humble-twist-mux, ros-humble-ros-workspace
+Homepage: http://wiki.ros.org/jackal_control
+Standards-Version: 3.9.2
+
+Package: ros-humble-jackal-control
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-humble-controller-manager, ros-humble-diff-drive-controller, ros-humble-imu-filter-madgwick, ros-humble-interactive-marker-twist-server, ros-humble-jackal-description, ros-humble-joint-state-broadcaster, ros-humble-joint-trajectory-controller, ros-humble-joy, ros-humble-robot-localization, ros-humble-robot-state-publisher, ros-humble-teleop-twist-joy, ros-humble-twist-mux, ros-humble-ros-workspace
+Description: Controllers for Jackal
