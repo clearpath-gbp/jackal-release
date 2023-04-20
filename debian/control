@@ -1,0 +1,12 @@
+Source: ros-humble-jackal-description
+Section: misc
+Priority: optional
+Maintainer: Mike Purvis <mpurvis@clearpathrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), ros-humble-ament-cmake, ros-humble-robot-state-publisher, ros-humble-urdf, ros-humble-velodyne-description, ros-humble-xacro, ros-humble-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-humble-jackal-description
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-humble-robot-state-publisher, ros-humble-urdf, ros-humble-velodyne-description, ros-humble-xacro, ros-humble-ros-workspace
+Description: URDF robot description for Jackal
