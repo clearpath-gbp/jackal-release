@@ -1,18 +1,36 @@
-# This message represents lower-frequency status updates
+# This message represents Jackal's lower-frequency status updates
 # Default publish frequency is 1Hz.
 
-std_msgs/Header header
+Header header
 
-# Robot Hardware ID
+# Commit of firmware source.
 string hardware_id
 
-# Firmware commit hash
-string firmware_commit
+# Times since MCU power-on and MCU rosserial connection, respectively.
+duration mcu_uptime
+duration connection_uptime
 
-# Times since MCU power-on.
-builtin_interfaces/Duration mcu_uptime
-builtin_interfaces/Duration connection_uptime
+# Monitoring the run/stop loop. Changes in these values trigger an immediate
+# publish, outside the ordinarily-scheduled 1Hz updates.
+bool drivers_active
+bool driver_external_stop_present
+bool driver_external_stop_stopped
 
-# Temperature of MCU's PCB in Celsius.
-float32 pcb_temperature
-float32 mcu_temperature
+# Voltage rails, in volts
+# Averaged over the message period
+float32 measured_battery
+float32 measured_12v
+float32 measured_5v
+
+# Current senses available on platform, in amps.
+# Averaged over the message period
+float32 drive_current
+float32 user_current
+float32 computer_current
+float32 total_current
+
+# Highest total system current peak as measured in a 1ms window.
+float32 total_current_peak
+
+# Integration of all power consumption since MCU power-on, in watt-hours.
+float64 total_power_consumed 
