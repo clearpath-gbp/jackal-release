@@ -2,6 +2,11 @@
 Changelog for package jackal_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.8.9 (2024-02-14)
+------------------
+* Fixed origin pose values.
+* Contributors: Tony Baltovski
+
 0.8.8 (2023-06-05)
 ------------------
 * change location of onav config
